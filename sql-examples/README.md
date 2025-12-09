@@ -1,10 +1,5 @@
 README / Run & Safety instructions
 
-
-1. npm init -y
-
-2. npm i express body-parser
-
 3. node sqli-lab.js
 
 4. Open http://localhost:3000/ for the index with endpoint list.
