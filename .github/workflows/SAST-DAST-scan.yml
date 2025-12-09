@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
         
       - name: Run Semgrep SAST on target folders
         uses: semgrep/semgrep-action@v1
@@ -49,7 +49,7 @@ jobs:
     needs: sast-scan
     steps:
       - name: checkout repository
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
 
       - name: run OWASP DAST ZAP
         uses: zaproxy/action-baseline@v0.13.0
