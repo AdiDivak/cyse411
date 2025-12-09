@@ -1,5 +1,6 @@
 name: DAST - OWASP ZAP Full Scan
-
+permissions:
+  contents: read
 on:
   workflow_dispatch:
 
