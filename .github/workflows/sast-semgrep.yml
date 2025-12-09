@@ -31,6 +31,8 @@ jobs:
         run: |
           semgrep \
             --config p/owasp-top-ten \
+            --severity ERROR \
+            --error \
             --sarif --output semgrep-results.sarif
 
       - name: Upload SARIF results to GitHub Security tab
