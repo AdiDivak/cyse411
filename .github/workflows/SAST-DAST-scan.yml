@@ -30,15 +30,18 @@ jobs:
       - name: Run Semgrep SAST on target folders
         uses: semgrep/semgrep-action@v1
         with:
-          paths: canonicalization-example, idor, fastbank-auth-lab
+          paths: |
+            canonicalization-example
+            idor
+            fastbank-auth-lab
           output-format: sarif
-          output-file: semgrep-sarif
+          output-file: semgrep-results-sarif
           config: auto
           
       - name: upload SAST
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: semgrep.sarif
+          sarif_file: semgrep-results.sarif
           category: "SAST Folders"
   dast-scan:
     name: run dast with owasp zap
@@ -46,15 +49,17 @@ jobs:
     needs: sast-scan
     steps:
       - name: checkout repository
-      - uses: action/checkout@v4
+        uses: action/checkout@v4
 
       - name: run OWASP DAST ZAP
         uses: zaproxy/action-baseline@v0.13.0
         with:
           target: 'http://localhost:4000'
+          output-format: sarif
+          output-file: zap-dast-results.sarif
 
       - name: upload DAST
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: semgrep.sarif
+          sarif_file: zap-dast-results.sarif
           category: 'DAST Folders'
